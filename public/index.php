@@ -1,37 +1,29 @@
-<div class="container">
-    <h1>Benvenuti nel Blog</h1>
-   
-</div>
+
 <?php 
-$title = "Home";
-require '../partials/head.php';
-//require_once '../app/views/Home.php';
+
+// Inizializza la sessione (se necessario per login o altro)
+//session_start();
+
+// Ottieni l'URI richiesto
+$request = $_SERVER['REQUEST_URI'];
+$request = str_replace('/php-blog/public', '', $request);
+// Rimuovi eventuali query string (?id=1, ecc.)
+$request = strtok($request, '?');
+
+// Gestisci il routing
+switch ($request) {
+    case '/':
+        require_once '../app/controllers/HomeController.php';
+        $controller = new HomeController();
+        $controller->index();  // Questo mostrerà la home con i post
+        break;
+    
 
 
-
-// Include la classe Database per la connessione
-require_once '../config/database.php';
-
-// Ottieni l'istanza del database
-$db = Database::getInstance()->getConnection();
-
-// Esegui una query per ottenere i post
-$query = "SELECT * FROM posts";
-$result = $db->query($query);
-
-// Controlla se ci sono risultati
-if ($result->num_rows > 0) {
-    // Cicla attraverso i risultati e visualizza i post
-    while ($row = $result->fetch_assoc()) {
-        echo "<h2>" . $row['title'] . "</h2>";
-        echo "<p>" . $row['content'] . "</p>";
-        echo "<hr>";
-    }
-} else {
-    echo "Nessun post trovato.";
+    default:
+        http_response_code(404);
+        echo "404 - Pagina non trovata";
+        break;
 }
-?>
 
-<?php 
-require_once '../partials/footer.php';
 ?>

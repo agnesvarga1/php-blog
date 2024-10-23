@@ -1,27 +1,10 @@
 <?php
-// Include la classe Database per la connessione
-require_once '../../config/database.php';
-
-// Ottieni l'istanza del database
-$db = Database::getInstance()->getConnection();
-
-// Esegui una query per ottenere i post
-$query = "SELECT * FROM posts";
-$result = $db->query($query);
-
-// Controlla se ci sono risultati
-if ($result->num_rows > 0) {
-    // Cicla attraverso i risultati e visualizza i post
-    while ($row = $result->fetch_assoc()) {
-        echo "<h2>" . $row['title'] . "</h2>";
-        echo "<p>" . $row['content'] . "</p>";
-        echo "<hr>";
-    }
-} else {
-    echo "Nessun post trovato.";
-}
+$title = "Home";
+include '../app/views/partials/head.php';  // Include il partial della head
+include '../app/views/partials/navbar.php';  // Include il partial della navbar
 ?>
-<div class="container">
-    <h1>Benvenuti nel Blog</h1>
-   
+<div class="container py-4">
+    <h1 >Home Page</h1>
 </div>
+
+<?php include __DIR__ . '/partials/footer.php'; ?>
