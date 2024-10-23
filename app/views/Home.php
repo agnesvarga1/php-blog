@@ -1,16 +1,6 @@
-<div class="container">
-    <h1>Benvenuti nel Blog</h1>
-   
-</div>
-<?php 
-$title = "Home";
-require '../partials/head.php';
-//require_once '../app/views/Home.php';
-
-
-
+<?php
 // Include la classe Database per la connessione
-require_once '../config/database.php';
+require_once '../../config/database.php';
 
 // Ottieni l'istanza del database
 $db = Database::getInstance()->getConnection();
@@ -31,7 +21,7 @@ if ($result->num_rows > 0) {
     echo "Nessun post trovato.";
 }
 ?>
-
-<?php 
-require_once '../partials/footer.php';
-?>
+<div class="container">
+    <h1>Benvenuti nel Blog</h1>
+   
+</div>
