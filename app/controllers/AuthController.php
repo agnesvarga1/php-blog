@@ -10,10 +10,10 @@ public function showLoginForm(){
 public function authenticate(){
     $username = $_POST['username'];
     $password = $_POST['password'];
-
-    require_once './app/models/User.php';
+    require_once '../app/models/User.php';
     $userModel = new User();
-    $userModel->findUserByUserName($username);
+    $user = $userModel->findUserByUserName($username);
+ 
     if ($user && password_verify($password, $user['password'])) {
         // Inizializza la sessione solo se non è stata già avviata in index.php
         if (session_status() == PHP_SESSION_NONE) {
