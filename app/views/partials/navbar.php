@@ -2,10 +2,10 @@
  <nav class="navbar bg-body-tertiary">
  
  <a class="navbar-brand">Blog</a>
- <form class="d-flex" role="search">
+ 
   
-   <button class="btn btn-primary" type="">Login</button>
- </form>
+  <a href="http://localhost:8888/php-blog/public/login"> <button class="btn btn-primary" >Login</button></a>
+ 
 
 </nav>
  </div>

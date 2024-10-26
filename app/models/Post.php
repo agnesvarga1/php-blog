@@ -1,5 +1,4 @@
 <?php
-
 class Post {
     private $db;
 
@@ -21,5 +20,6 @@ class Post {
             return [];
         }
     }
+
 
 }
