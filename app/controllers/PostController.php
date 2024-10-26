@@ -8,6 +8,7 @@ class PostController{
         if(isset( $_SESSION['user_id'])){
             require '../app/views/dashboard.php'; // Redirect to user dashboard
         }else{
+            
             require '../app/views/home.php';
         }
        

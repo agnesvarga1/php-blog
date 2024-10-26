@@ -15,22 +15,30 @@ public function authenticate(){
     $user = $userModel->findUserByUserName($username);
  
     if ($user && password_verify($password, $user['password'])) {
-        // Inizializza la sessione solo se non è stata già avviata in index.php
+        
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
 
-        // Imposta le variabili di sessione per mantenere l'utente loggato
+       
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
 
-        // Reindirizza alla home page o dashboard
+        //  redirect to dashboard
         header('Location: /php-blog/public/dashboard');
         exit();
     } else {
         // Se la login fallisce, mostra un errore
         echo "Username o password non validi.";
     }
+}
+
+public function logout() {
+    session_start();
+    session_unset();  // Unset all session variables
+    session_destroy();  // Destroy the session
+    header('Location: /php-blog/public');  // Redirect to homepage
+    exit();
 }
     
 }

@@ -32,7 +32,11 @@ switch ($request) {
         }
        
         break;
-        
+        case '/logout' :
+            require_once '../app/controllers/AuthController.php';
+            $controller = new AuthController();
+            $controller->logout();
+            break;
         case '/dashboard' :
             require_once '../app/controllers/PostController.php';
             $controller = new PostController();
