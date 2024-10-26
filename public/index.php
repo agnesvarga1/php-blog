@@ -1,10 +1,10 @@
 
 <?php 
 
-// Inizializza la sessione (se necessario per login o altro)
-//session_start();
+//sesssion starts
+session_start();
 
-// Ottieni l'URI richiesto
+// get URI
 
 $request = $_SERVER['REQUEST_URI'];
 

@@ -16,9 +16,6 @@ public function authenticate(){
  
     if ($user && password_verify($password, $user['password'])) {
         
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
 
        
         $_SESSION['user_id'] = $user['id'];
