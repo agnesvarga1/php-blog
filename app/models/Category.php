@@ -10,19 +10,16 @@ class Category{
    
  }
 
- public function findCategoryById($id) {
-    $stmt = $this->db->prepare("SELECT * FROM categories WHERE id = ?");
-    // Collega il parametro (stringa, "s" per il tipo)
-    $stmt->bind_param("i", $id);
-    //esegue la query
+ public function getCategoryNames() {
+    $stmt = $this->db->prepare("SELECT id, name FROM categories");
     $stmt->execute();
-    //
     $result = $stmt->get_result();
-       // Se cat è stato trovato, restituisci i dati
-if ($result->num_rows > 0) {
-    return $result->fetch_assoc();  // Restituisce il categry come array associativo SOLO uno
-} else {
-    return null;  // Nessun trovato
+    $categories = [];
+    
+    while ($row = $result->fetch_assoc()) {
+        $categories[$row['id']] = $row['name'];
+    }
+    
+    return $categories; // Returns an associative array: [category_id => category_name, ...]
 }
- }
 }

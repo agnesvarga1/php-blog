@@ -6,9 +6,9 @@
  <a href="http://localhost:8888/php-blog/public/" class="navbar-brand fs-1">Blog</a>
  
  <?php if (isset($_SESSION['user_id'])): ?>
-  <a href="http://localhost:8888/php-blog/public/logout"> <button class="btn btn-danger m-2" >Logout</button></a>
+  <a  class="btn btn-danger m-2" href="http://localhost:8888/php-blog/public/logout"> Logout</a>
   <?php else: ?>
-  <a href="http://localhost:8888/php-blog/public/login"> <button class="btn btn-primary m-2" >Login</button></a>
+  <a class="btn btn-primary m-2" href="http://localhost:8888/php-blog/public/login"> Login</a>
  
   <?php endif; ?>
 </nav>

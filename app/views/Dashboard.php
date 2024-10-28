@@ -3,14 +3,14 @@ $title = "Dashboard";
 include '../app/views/partials/head.php';  // Include il partial della head
 include '../app/views/partials/navbar.php';  // Include il partial della navbar
 
-
-
-
 ?>
-
-
+<div class="container">
+    
 <h1 class="text-center">Your own blog posts,<?= $_SESSION['username']?></h1>
-<div class="container py-4 d-flex gap-2">
+
+<div class=""><a href="http://localhost:8888/php-blog/public/postcreate" class="btn btn-primary fs-5 m-2">New Post</a></div>
+
+<div class="container py-4 d-flex gap-2 ">
     <?php if (!empty($userposts)): ?>
         <table class="table table-hover">
   <thead>
@@ -30,7 +30,7 @@ include '../app/views/partials/navbar.php';  // Include il partial della navbar
       <th scope="row"><?=$post['id']; ?></th>
       <td><?=$post['title']; ?></td>
       <td class=" text-truncate" style="max-width: 180px;"><?=$post['content']; ?></td>
-      <td><?=$post['category_id']; ?></td>
+      <td class="text-primary fw-semibold" ><?=$post['category_id']; ?></td>
       <td><?=$post['updated_at']; ?></td>
       <td><a href="" class= "fw--semibold text-primary fs-2 text-decoration-none">Edit</a> <a href="#"  class= "fw-semibold text-danger fs-2 text-decoration-none">  Delete</a></td>
     </tr>
@@ -44,4 +44,5 @@ include '../app/views/partials/navbar.php';  // Include il partial della navbar
 </div>
 
 
+</div>
 <?php include __DIR__ . '/partials/footer.php'; ?>

@@ -7,13 +7,15 @@ include '../app/views/partials/navbar.php';  // Include il partial della navbar
 ?>
 
     <h1 class="text-center">All blog posts</h1>
-    <div class="container py-4 d-flex gap-2">
+    <div class="container py-4 d-flex flex-column gap-2">
     <?php foreach ($allposts as $post): ?>  <div class="card">
   <!-- <img src="..." class="card-img-top" alt="..."> -->
   <div class="card-body">
     <h5 class="card-title"><?= $post['title']; ?></h5>
+    <p class="badge text-bg-primary fs-5"><?= $post['category_id']; ?></p>
     <p class="card-text"><?= $post['content']; ?></p>
-   
+    <p class="card-text"><?= $post['updated_at']; ?></p>
+    
   </div>
 </div>
 <?php endforeach?>
