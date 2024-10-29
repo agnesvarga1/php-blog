@@ -17,7 +17,7 @@ class Category{
     $categories = [];
     
     while ($row = $result->fetch_assoc()) {
-        $categories[$row['id']] = $row['name'];
+        $categories[$row['id']] = $row;
     }
     
     return $categories; // Returns an associative array: [category_id => category_name, ...]

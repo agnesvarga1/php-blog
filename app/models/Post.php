@@ -3,14 +3,31 @@ require_once '../config/database.php';
 
 class Post {
     private $db;
-    
+    private $title;
+    private $category_id;
+    private $content;
        // Costruttore del Model Post
        public function __construct() {
         // Ottieni l'istanza del database (singleton) e memorizzala nella proprietà $db
         $this->db = Database::getInstance()->getConnection();
-      
+    
     }
+    
+    public function createPost($title, $category_id, $content) {
+        $this->title = $title;
+        $this->category_id = $category_id;
+        $this->content = $content;
+    }
+    public function save() {
+        $stmt = $this->db->prepare("INSERT INTO posts (title, category_id, content, user_id, created_at) VALUES (?, ?, ?, ?, NOW())");
 
+        // Bind parameters (assuming user_id is in session for example)
+        $user_id = $_SESSION['user_id']; 
+        $stmt->bind_param("sisi", $this->title, $this->category_id, $this->content, $user_id);
+
+        // Execute and return whether the save was successful
+        return $stmt->execute();
+    }
     // Funzione per ottenere tutti i post
     public function getAllPosts() {
       

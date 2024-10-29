@@ -46,8 +46,19 @@ switch ($request) {
             case '/postcreate' :
                 require_once '../app/controllers/PostController.php';
                 $controller = new PostController();
-                $controller->create();  // Questo mostrerà la home con i post
+                if($_SERVER['REQUEST_METHOD']== 'POST' ){
+                    
+               
+                    $controller->store();
+                }
+                $controller->create(); 
                 break;
+
+                // case '/poststore' :
+                //     require_once '../app/controllers/PostController.php';
+                //     $controller = new PostController();
+                //     $controller->store(); 
+                //     break;
     default:
         http_response_code(404);
         echo "404 - Pagina non trovata";
