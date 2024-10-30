@@ -64,5 +64,17 @@ class PostController{
             echo "Error: Could not save the post.";
         }
         
+
+    }
+    public function show($postId){
+        $postModel = new Post();
+        $post = $postModel->findPostById($postId);
+
+        if ($post) {
+            // Pass the post data to the view
+            require '../app/views/PostShow.php';
+        } else {
+            echo "Post not found";
+        }
     }
 }

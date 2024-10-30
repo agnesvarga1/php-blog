@@ -54,11 +54,12 @@ switch ($request) {
                 $controller->create(); 
                 break;
 
-                // case '/poststore' :
-                //     require_once '../app/controllers/PostController.php';
-                //     $controller = new PostController();
-                //     $controller->store(); 
-                //     break;
+                case '/postshow' :
+                    require_once '../app/controllers/PostController.php';
+                    $controller = new PostController();
+                    $postId = $_GET['id'] ?? null;
+                    $controller->show($postId); 
+                    break;
     default:
         http_response_code(404);
         echo "404 - Pagina non trovata";
