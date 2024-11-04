@@ -48,7 +48,7 @@ switch ($request) {
                 $controller = new PostController();
                 if($_SERVER['REQUEST_METHOD']== 'POST' ){
                     
-               
+            
                     $controller->store();
                 }
                 $controller->create(); 
@@ -59,6 +59,12 @@ switch ($request) {
                     $controller = new PostController();
                     $postId = $_GET['id'] ?? null;
                     $controller->show($postId); 
+                    break;
+                case '/deletepost':
+                    require_once '../app/controllers/PostController.php';
+                    $controller = new PostController();
+                    $postId = $_GET['id'] ?? null;
+                    $controller->delete($postId); 
                     break;
     default:
         http_response_code(404);

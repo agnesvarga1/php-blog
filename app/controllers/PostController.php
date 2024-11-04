@@ -77,4 +77,11 @@ class PostController{
             echo "Post not found";
         }
     }
+
+    public function delete($postId){
+        $postModel = new Post();
+        $post = $postModel->deletePost($postId);
+        // Redirect to the dashboard or posts list after successful delete
+        header('Location: /php-blog/public/dashboard');
+    }
 }

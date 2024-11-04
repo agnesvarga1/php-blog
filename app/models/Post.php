@@ -73,6 +73,13 @@ if ($result->num_rows > 0) {
     return [];  
 }
 }
+public function deletePost($id){
+    $stmt =$this->db->prepare("DELETE FROM posts WHERE id = ?");
+  
+    $stmt->bind_param("i", $id);
+    //esegue la query
+    $stmt->execute();
+}
         
     }
     
