@@ -44,11 +44,11 @@ class PostController{
     }
 
     public function store(){
-        //$postModel = new Post();
+    
         $title = $_POST['title'] ?? null;
         $category_id = intval($_POST['category'] ) ?? null;
         $content = $_POST['content'] ?? null;
-       // var_dump($title , $category_id, $content);
+      
         if (!$title || !$category_id || !$content) {
             // Handle validation error (e.g., redirect back with error message)
             header('Location: /php-blog/public/postcreate');
@@ -75,6 +75,35 @@ class PostController{
             require '../app/views/PostShow.php';
         } else {
             echo "Post not found";
+        }
+    }
+
+    public function edit($postId){
+        $categoryModel = new Category();
+        $categories = $categoryModel->getCategoryNames();
+        $postModel = new Post();
+        $post = $postModel->findPostById($postId);
+        require '../app/views/PostUpdate.php';
+    }
+    
+    public function update($data){
+        if (!isset($data['id']) || !filter_var($data['id'], FILTER_VALIDATE_INT)) {
+            echo "Invalid post ID";
+            return;
+        }
+
+        $postId = $data['id'];
+        $title = $data['title'];
+        $content = $data['content'];
+        $category = $data['category'];
+          $postModel = new Post();
+          $success = $postModel->updatePost($postId, $title, $category, $content);
+        if ($success) {
+            // Redirect to the dashboard or posts list after successful save
+            header('Location: /php-blog/public/dashboard');
+        } else {
+            // Handle save error (e.g., display error message)
+            echo "Error during update.";
         }
     }
 

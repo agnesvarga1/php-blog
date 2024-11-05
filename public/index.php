@@ -53,6 +53,15 @@ switch ($request) {
                 }
                 $controller->create(); 
                 break;
+                case '/postupdate' :
+                    require_once '../app/controllers/PostController.php';
+                    $postId = $_GET['id'] ?? null;
+                    $controller = new PostController();
+                    if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                     $controller->update($_POST);
+                    }
+                    $controller->edit($postId); 
+                    break;
 
                 case '/postshow' :
                     require_once '../app/controllers/PostController.php';

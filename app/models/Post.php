@@ -73,6 +73,13 @@ if ($result->num_rows > 0) {
     return [];  
 }
 }
+public function updatePost($id, $title, $category, $content) {
+    $stmt = $this->db->prepare("UPDATE posts SET title = ?, category_id = ?, content = ? WHERE id = ?");
+    $stmt->bind_param("sisi", $title, $category, $content, $id);
+
+    return $stmt->execute();
+}
+
 public function deletePost($id){
     $stmt =$this->db->prepare("DELETE FROM posts WHERE id = ?");
   
