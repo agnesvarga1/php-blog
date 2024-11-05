@@ -8,7 +8,7 @@ include '../app/views/partials/navbar.php';  // Include il partial della navbar
 
 <div class="container">
    <h1 class="text-center mt-2">Compose A New Post</h1> 
-   <form action="http://localhost:8888/php-blog/public/postcreate" method="POST">
+   <form action="http://localhost:8888/php-blog/public/postcreate" method="POST" enctype="multipart/form-data">
    <div class="mb-3">
   <label for="title" class="form-label">Title</label>
   <input type="text" class="form-control" id="title" name="title" placeholder="My post's Title" >
@@ -27,6 +27,10 @@ include '../app/views/partials/navbar.php';  // Include il partial della navbar
   <label for="content"  class="form-label">Content</label>
   <textarea class="form-control" id="content" name="content" rows="3"></textarea>
 </div>
+<div class="mb-3">
+        <label for="image" class="form-label">Upload Image</label>
+        <input type="file" class="form-control" name="image" id="image">
+    </div>
 <button type="submit" class="btn btn-primary ">Save</button>
    </form>
 </div>

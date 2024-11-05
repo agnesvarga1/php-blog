@@ -36,6 +36,21 @@ class PostController{
             require '../app/views/home.php';
         } 
     }
+    private function handleImageUpload($file) {
+   
+        if ($file['image']['error'] === UPLOAD_ERR_OK) {
+            $targetDir = "../uploads";
+            $imageName = uniqid() . "_" . basename($file['image']['name']);
+            $targetFile = $targetDir . $imageName;
+
+            if (move_uploaded_file($file['image']['tmp_name'], $targetFile)) {
+               // var_dump($targetFile);
+                return $targetFile;
+            }
+        }
+        return null;  // Return null if the upload failed or no file was provided
+    }
+
 
     public function create(){
         $categoryModel = new Category();
@@ -48,14 +63,17 @@ class PostController{
         $title = $_POST['title'] ?? null;
         $category_id = intval($_POST['category'] ) ?? null;
         $content = $_POST['content'] ?? null;
-      
+        $image = $_FILES ?? null;
+        
+        $imgPath = $this->handleImageUpload($image);
+ //var_dump($imgPath);
         if (!$title || !$category_id || !$content) {
             // Handle validation error (e.g., redirect back with error message)
             header('Location: /php-blog/public/postcreate');
             exit;
         }
           $post = new Post();
-       $post->createPost($title,$category_id,$content);
+          $post->createPost($title,$category_id,$content,$imgPath);
         if ($post->save()) {
             // Redirect to the dashboard or posts list after successful save
             header('Location: /php-blog/public/dashboard');

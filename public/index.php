@@ -42,12 +42,12 @@ switch ($request) {
             $controller = new PostController();
             $controller->index();  // Questo mostrerà la home con i post
             break;
-
+        
             case '/postcreate' :
                 require_once '../app/controllers/PostController.php';
                 $controller = new PostController();
                 if($_SERVER['REQUEST_METHOD']== 'POST' ){
-                    
+                   
             
                     $controller->store();
                 }
