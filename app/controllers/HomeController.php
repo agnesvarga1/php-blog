@@ -3,6 +3,8 @@ require_once '../app/models/Post.php';
 require_once '../app/models/Category.php';
 class HomeController{
     public function index(){
+        $categoryModel = new Category;
+        $categories = $categoryModel->getCategoryNames();
         $postModel = new Post();
         $allposts= $postModel->getAllPosts();
         foreach($allposts as &$post){
