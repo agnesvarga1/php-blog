@@ -1,7 +1,7 @@
 <?php
 $title = "Home";
-include '../app/views/partials/head.php';  // Include il partial della head
-include '../app/views/partials/navbar.php';  // Include il partial della navbar
+include '../app/views/partials/head.php';  
+include '../app/views/partials/navbar.php';  
 
 //var_dump($allposts);
 ?>

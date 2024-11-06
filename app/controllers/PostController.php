@@ -66,7 +66,7 @@ class PostController{
         $image = $_FILES ?? null;
         
         $imgPath = $this->handleImageUpload($image);
- //var_dump($imgPath);
+
         if (!$title || !$category_id || !$content) {
             // Handle validation error (e.g., redirect back with error message)
             header('Location: /php-blog/public/postcreate');
@@ -101,10 +101,12 @@ class PostController{
         $categories = $categoryModel->getCategoryNames();
         $postModel = new Post();
         $post = $postModel->findPostById($postId);
+    
         require '../app/views/PostUpdate.php';
     }
     
-    public function update($data){
+    public function update($data,$file){
+      
         if (!isset($data['id']) || !filter_var($data['id'], FILTER_VALIDATE_INT)) {
             echo "Invalid post ID";
             return;
@@ -113,9 +115,22 @@ class PostController{
         $postId = $data['id'];
         $title = $data['title'];
         $content = $data['content'];
+        
         $category = $data['category'];
-          $postModel = new Post();
-          $success = $postModel->updatePost($postId, $title, $category, $content);
+        
+        $postModel = new Post();
+        $existingPost = $postModel->findPostById($postId);
+       
+
+   
+        if ($file['image']['error'] === UPLOAD_ERR_OK) {
+            $imagePath = $this->handleImageUpload($file);
+      
+        } else {
+            $imagePath = $existingPost['image'];  // Keep the old image if no new one is uploaded
+        }
+ 
+       $success = $postModel->updatePost($postId, $title, $category, $content,$imagePath);
         if ($success) {
             // Redirect to the dashboard or posts list after successful save
             header('Location: /php-blog/public/dashboard');

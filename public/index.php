@@ -21,6 +21,10 @@ switch ($request) {
         $controller->index();  // Questo mostrerà la home con i post
         break;
     
+
+    case '/home':
+         require_once '../app/views/Home.php';
+         break;
      case '/login' :
         require_once '../app/controllers/AuthController.php';
         $controller = new AuthController();
@@ -58,7 +62,8 @@ switch ($request) {
                     $postId = $_GET['id'] ?? null;
                     $controller = new PostController();
                     if($_SERVER['REQUEST_METHOD'] === 'POST' ){
-                     $controller->update($_POST);
+                    
+                    $controller->update($_POST,$_FILES);
                     }
                     $controller->edit($postId); 
                     break;

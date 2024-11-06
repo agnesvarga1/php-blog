@@ -76,9 +76,9 @@ if ($result->num_rows > 0) {
     return [];  
 }
 }
-public function updatePost($id, $title, $category, $content) {
-    $stmt = $this->db->prepare("UPDATE posts SET title = ?, category_id = ?, content = ? WHERE id = ?");
-    $stmt->bind_param("sisi", $title, $category, $content, $id);
+public function updatePost($id, $title, $category, $content,$image) {
+    $stmt = $this->db->prepare("UPDATE posts SET title = ?, category_id = ?, content = ?, image = ? WHERE id = ?");
+    $stmt->bind_param("sissi", $title, $category, $content, $image,$id);
 
     return $stmt->execute();
 }

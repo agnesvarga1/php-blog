@@ -2,13 +2,13 @@
 $title = "Edit Post";
 include '../app/views/partials/head.php';  // Include il partial della head
 include '../app/views/partials/navbar.php';  // Include il partial della navbar
-
+//var_dump($post);
 
 ?>
 
 <div class="container">
    <h1 class="text-center mt-2">Edit Post</h1> 
-   <form action="http://localhost:8888/php-blog/public/postupdate" method="POST">
+   <form action="http://localhost:8888/php-blog/public/postupdate" method="POST" enctype="multipart/form-data">
    <div class="mb-3">
    <input type="hidden" name="id" value="<?= $post['id']; ?>">
   <label for="title" class="form-label">Title</label>
@@ -30,6 +30,12 @@ include '../app/views/partials/navbar.php';  // Include il partial della navbar
   <label for="content"  class="form-label">Content</label>
   <textarea class="form-control" id="content" name="content" rows="3"><?= $post['content']; ?></textarea>
 </div>
+<div class="mb-3">
+        <label for="image" class="form-label">Upload Image</label>
+    
+        <input type="file" class="form-control" name="image" id="image">
+     
+    </div>
 <button type="submit" class="btn btn-primary ">Save</button>
    </form>
 </div>
