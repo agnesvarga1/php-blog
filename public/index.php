@@ -10,10 +10,10 @@ $request = $_SERVER['REQUEST_URI'];
 
 $request = str_replace('/php-blog/public', '', $request);
 
-// Rimuovi eventuali query string (?id=1, ecc.)
+// Remove query string (?id=1, ecc.)
 $request = strtok($request, '?');
-//var_dump($request);
-// Gestisci il routing
+
+// routing
 switch ($request) {
     case '/':
         require_once '../app/controllers/PostController.php';
@@ -23,7 +23,9 @@ switch ($request) {
     
 
     case '/home':
-         require_once '../app/views/Home.php';
+         require_once '../app/controllers/HomeController.php';
+         $controller = new HomeController();
+         $controller->index();
          break;
      case '/login' :
         require_once '../app/controllers/AuthController.php';
@@ -32,7 +34,7 @@ switch ($request) {
          
             $controller->authenticate();
         }else{
-            $controller->showLoginForm();  // Questo mostrerà la home con i post
+            $controller->showLoginForm(); 
         }
        
         break;
@@ -44,7 +46,7 @@ switch ($request) {
         case '/dashboard' :
             require_once '../app/controllers/PostController.php';
             $controller = new PostController();
-            $controller->index();  // Questo mostrerà la home con i post
+            $controller->index(); 
             break;
         
             case '/postcreate' :

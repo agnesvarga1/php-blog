@@ -3,8 +3,10 @@
  <div class="mx-auto px-4 bg-body-tertiary">
  <nav class="navbar  w-75 mx-auto">
  
- <a href="http://localhost:8888/php-blog/public/" class="navbar-brand fs-1">Blog</a>
- 
+ <a href="http://localhost:8888/php-blog/public/home" class="navbar-brand fs-1">Blog</a>
+ <?php if (isset($_SESSION['user_id'])): ?>
+  <a href="http://localhost:8888/php-blog/public/" class="nav-item text-decoration-none text-dark fs-1">Dashboard</a>
+  <?endif;?>
  <?php if (isset($_SESSION['user_id'])): ?>
   <a  class="btn btn-danger m-2" href="http://localhost:8888/php-blog/public/logout"> Logout</a>
   <?php else: ?>
