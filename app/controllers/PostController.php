@@ -51,6 +51,8 @@ class PostController{
         return null;  // Return null if the upload failed or no file was provided
     }
 
+    
+
 
     public function create(){
         $categoryModel = new Category();
@@ -142,8 +144,19 @@ class PostController{
 
     public function delete($postId){
         $postModel = new Post();
-        $post = $postModel->deletePost($postId);
-        // Redirect to the dashboard or posts list after successful delete
-        header('Location: /php-blog/public/dashboard');
+        $post = $postModel->findPostById($postId);
+         if($post){
+            $imagePath = $post['image'];
+            $postModel->deletePost($postId);
+    
+            // Delete the image file
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+     // Redirect to the dashboard or posts list after successful delete
+     header('Location: /php-blog/public/dashboard');
+     exit;
+         }
+   
     }
 }
