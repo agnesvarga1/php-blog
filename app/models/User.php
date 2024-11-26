@@ -32,5 +32,20 @@ class User {
             return null;  // Nessun utente trovato
         }
     }
-            
+      public function updateUserName($new_userName,$username){
+         //conn db
+         $db = Database::getInstance()->getConnection();
+         $stmt = $db->prepare("UPDATE users SET username=? WHERE username=?");
+         $stmt->bind_param("ss",$new_userName,$username);
+         return $stmt->execute();
+      }
+      public function updatePwd($new_pwd,$username){
+          //conn db
+          $db = Database::getInstance()->getConnection();
+          $stmt = $db->prepare("UPDATE users SET password=? WHERE username=?"); 
+          $stmt->bind_param('ss',$new_pwd,$username); 
+          return $stmt->execute();
+      }
+       
         }
+    

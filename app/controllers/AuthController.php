@@ -25,8 +25,8 @@ public function authenticate(){
         header('Location: /php-blog/public/dashboard');
         exit();
     } else {
-        // Se la login fallisce, mostra un errore
-        echo "Username o password non validi.";
+        // if login fails echo err msg
+        echo "invalid username or password";
     }
 }
 
@@ -34,6 +34,7 @@ public function logout() {
     session_start();
     session_unset();  // Unset all session variables
     session_destroy();  // Destroy the session
+    setcookie(session_name(), '', time() - 3600, '/'); 
     header('Location: /php-blog/public');  // Redirect to homepage
     exit();
 }

@@ -69,7 +69,7 @@ switch ($request) {
                     }
                     $controller->edit($postId); 
                     break;
-
+                
                 case '/postshow' :
                     require_once '../app/controllers/PostController.php';
                     $controller = new PostController();
@@ -81,6 +81,16 @@ switch ($request) {
                     $controller = new PostController();
                     $postId = $_GET['id'] ?? null;
                     $controller->delete($postId); 
+                    break;
+                case '/usersettings' :
+                    require_once '../app/controllers/UserController.php';
+                    $controller = new UserController();
+                    if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                     $controller->updateUsernameOrPwd($_POST);
+                    }else{
+                        $controller->index();
+                    }
+                   
                     break;
     default:
         http_response_code(404);
