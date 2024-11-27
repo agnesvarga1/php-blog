@@ -13,6 +13,8 @@ class UserController{
             $new_name = $data['new_username'];
            $success = $usermodel->updateUserName($new_name,$curr_name);
            if($success){
+            $user=$usermodel->findUserByUserName($new_name);
+            $_SESSION['username']=$user['username'];
               header('Location: /php-blog/public/dashboard');
         } else {
             // Handle save error (e.g., display error message)

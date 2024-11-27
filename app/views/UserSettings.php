@@ -28,9 +28,9 @@ include '../app/views/partials/navbar.php';
       <div class="modal-body">
       <div class="mb-3">
     <label for="curr-username" class="form-label">Current username</label>
-    <input type="text" class="form-control" id="curr-username" name="curr_username" aria-describedby="currUsername">
+    <input type="text" class="form-control" id="curr-username" name="curr_username" aria-describedby="currUsername" required max="50">
     <label for="new-username" class="form-label"> New username</label>
-    <input type="text" class="form-control" id="new-username" name="new_username" aria-describedby="newUsername">
+    <input type="text" class="form-control" id="new-username" name="new_username" aria-describedby="newUsername" required max="50">
   </div>
       </div>
       <div class="modal-footer">
@@ -53,13 +53,13 @@ include '../app/views/partials/navbar.php';
       <form action="http://localhost:8888/php-blog/public/usersettings" method="POST">
       <div class="modal-body">
       <div class="mb-3">
-        <!-- <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>"> -->
+   
       <label for="curr_pwd" class="form-label">Current Password</label>
-      <input type="password" class="form-control" id="curr_pwd" name="curr_pwd">
+      <input type="password" class="form-control" id="curr_pwd" name="curr_pwd" >
       </div>
       <div class="mb-3">
       <label for="new_pwd" class="form-label">New Password</label>
-      <input type="password" class="form-control" id="new_pwd" name="new_pwd">
+      <input type="password" class="form-control" id="new_pwd" name="new_pwd" min="8" max="20">
       </div>
       </div>
       <div class="modal-footer">
