@@ -1,5 +1,17 @@
  
+<header>
+  <div class="background-va ">
+  <div class="container">
+    
+    <div class="circle">
+      <h1 class="font-va fs-3">Agnes's Blog</h1>
 
+      
+    </div>
+</div>
+  </div>
+
+</header>
  <div class="mx-auto px-4 bg-body-tertiary">
  <nav class="navbar  w-75 mx-auto">
  
