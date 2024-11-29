@@ -1,19 +1,16 @@
  
 <header>
   <div class="background-va ">
-  <div class="container">
-    
+  <div class="w-75 mx-auto px-4 pt-2">
     <div class="circle">
-      <h1 class="font-va fs-3">Agnes's Blog</h1>
-
-      
+      <h1 class="font-va fs-3">Agnes's Blog</h1>    
     </div>
 </div>
   </div>
 
 </header>
  <div class="mx-auto px-4 bg-body-tertiary">
- <nav class="navbar  w-75 mx-auto">
+ <nav class="navbar w-75 mx-auto">
  
  <a href="http://localhost:8888/php-blog/public/home" class="navbar-brand fs-1">Blog</a>
  <?php if (isset($_SESSION['user_id'])): ?>
